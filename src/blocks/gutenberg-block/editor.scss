@@ -4,6 +4,19 @@
  * Replace them with your own styles or remove the file completely.
  */
 
+@import "/src/scss/variables";
 .wp-block-mc-gutenberg-block {
 	border: 1px dotted #f00;
+}
+
+body {
+	background: linear-gradient(135deg, $gradient-start, $gradient-end);
+	color: $text-color;
+}
+
+button {
+	background-color: $button-color;
+	color: white;
+	border: 2px solid $border-color;
+	box-shadow: 0 0 10px $accent-color;
 }
