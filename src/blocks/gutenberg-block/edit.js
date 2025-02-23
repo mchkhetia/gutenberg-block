@@ -12,7 +12,6 @@ import { __ } from '@wordpress/i18n';
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import {MediaUpload, RichText, useBlockProps} from '@wordpress/block-editor';
-import { useState } from 'react';
 import {Button, ColorPalette} from '@wordpress/components';
 
 /**
@@ -33,12 +32,7 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
-
-	const [color, setColor] = useState('#A991F7');
-	const [image, setImage] = useState(null);
-	const [text, setText] = useState('Some text');
-
+export default function Edit({ attributes, setAttributes }) {
 	const colors = [
 		{ name: 'Primary', color: '#A991F7' },
 		{ name: 'Secondary', color: '#FEC8D8' },
@@ -61,54 +55,70 @@ export default function Edit() {
 		}
 	};
 
-	const getButtonClass = (selectedColor) => {
-		return selectedColor === '#fff' ? 'white-button' : '';
+	const handleImageSelect = (media) => {
+		setAttributes({ image: media.sizes.full.url });
 	};
 
-	const handleImageSelect = (media) => {
-		setImage(media.sizes.full.url);
+	const handleButtonTextChange = (newButtonText) => {
+		setAttributes({ buttonText: newButtonText });
+	};
+
+	const handleButtonLinkChange = (newButtonLink) => {
+		setAttributes({ buttonLink: newButtonLink });
 	};
 
 	return (
-		<div { ...useBlockProps() }>
+		<div {...useBlockProps()}>
 			<ColorPalette
 				colors={colors}
-				value={color}
-				onChange={(color) => setColor(color)}
+				value={attributes.color}
+				onChange={(newColor) => setAttributes({ color: newColor })}
 			/>
 
-			<div className={`hero-content ${getColorClass(color)}`}>
-				<h1 className={color === '#fff' ? 'white-text' : ''}>
+			<div className={`bio-content ${getColorClass(attributes.color)}`}>
+				<h1 className={attributes.color === '#fff' ? 'white-text' : ''}>
 					<RichText
-						tagName="span"
-						value={text}
-						onChange={(newText) => setText(newText)}
-						placeholder={__('Enter Banner Text')}
+						tagName="div"
+						value={attributes.header}
+						onChange={(newHeader) => setAttributes({ header: newHeader })}
+						placeholder={__('Enter Name')}
 					/>
 				</h1>
-				<p> <RichText
+				<RichText
+					className="bio-description"
 					tagName="p"
-					value={text}
-					onChange={(newText) => setText(newText)}
-					placeholder={__('Some description or text')}
-				/></p>
-
-				{/*<a href="#" className={`hero-button ${getButtonClass(color)}`}>*/}
-				{/*	Button*/}
-				{/*</a>*/}
+					value={attributes.description}
+					onChange={(newDescription) => setAttributes({ description: newDescription })}
+					placeholder={__('Enter bio or description')}
+				/>
 
 				<MediaUpload
 					onSelect={handleImageSelect}
 					type="image"
-					value={image}
+					value={attributes.image}
 					render={({ open }) => (
 						<Button onClick={open}>
-							{image ? 'Change Image' : 'Choose Image'}
+							{attributes.image ? 'Change Image' : 'Choose Image'}
 						</Button>
 					)}
 				/>
-				{image && <img src={image} alt="Selected image" />}
+				{attributes.image && <img src={attributes.image} alt="Selected image" />}
+
+				<RichText
+					tagName="span"
+					value={attributes.buttonText || 'Contact Me'}
+					onChange={handleButtonTextChange}
+					placeholder="Button Text"
+				/>
+
+				<input
+					type="url"
+					value={attributes.buttonLink}
+					onChange={(e) => handleButtonLinkChange(e.target.value)}
+					placeholder="Button URL"
+				/>
 			</div>
 		</div>
 	);
 }
+
