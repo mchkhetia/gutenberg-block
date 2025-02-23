@@ -6,17 +6,87 @@
 
 @import "/src/scss/variables";
 .wp-block-mc-gutenberg-block {
-	body {
-		background: linear-gradient(135deg, $gradient-start, $gradient-end);
-		color: $text-color;
+	.hero-content {
+		padding: 20px;
+		border-radius: 8px;
+		text-align: center;
+		background-color: var(--hero-background, #A991F7);
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+		max-width: 800px;
+		margin: 0 auto;
+		transition: background-color 0.3s ease-in-out;
+
+		h1 {
+			font-size: 2rem;
+			font-weight: bold;
+			color: var(--hero-text-color, #fff);
+			margin-bottom: 10px;
+		}
+
+		p {
+			font-size: 1.25rem;
+			color: var(--hero-text-color, #fff);
+			margin-bottom: 20px;
+		}
+
+		.hero-button {
+			padding: 10px 20px;
+			background-color: var(--hero-button-bg, #F9A8D4);
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			font-size: 1rem;
+			text-transform: uppercase;
+			cursor: pointer;
+			transition: background-color 0.3s ease-in-out;
+
+			&:hover {
+				background-color: #F47F8A;
+			}
+
+			&.white-button {
+				background-color: #fff;
+				color: #333;
+			}
+		}
+
+		img {
+			max-width: 100%;
+			height: auto;
+			margin-top: 20px;
+			border-radius: 8px;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+		}
+
+		.white-text {
+			color: #fff !important;
+		}
+
+		.primary {
+			--hero-background: #A991F7;
+			--hero-text-color: #fff;
+			--hero-button-bg: #F9A8D4;
+		}
+
+		.secondary {
+			--hero-background: #FEC8D8;
+			--hero-text-color: #3D348B;
+			--hero-button-bg: #F9A8D4;
+		}
+
+		.accent {
+			--hero-background: #A7F3D0;
+			--hero-text-color: #3D348B;
+			--hero-button-bg: #F9A8D4;
+		}
+
+		.background {
+			--hero-background: #3D348B;
+			--hero-text-color: #fff;
+			--hero-button-bg: #F9A8D4;
+		}
 	}
 
-	button {
-		background-color: $button-color;
-		color: white;
-		border: 2px solid $border-color;
-		box-shadow: 0 0 10px $accent-color;
-	}
 
 
 

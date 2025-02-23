@@ -17,8 +17,24 @@ import { useBlockProps } from '@wordpress/block-editor';
  */
 export default function save() {
 	return (
-		<p { ...useBlockProps.save() }>
-			{ 'Mc Gutenberg Block – hello from the saved content!' }
-		</p>
+		<body>
+		<div { ...useBlockProps.save() }>
+
+
+
+			<div className="hero-content">
+				<h1> </h1>
+				<p> </p>
+				<a href="" className="hero-button"></a>
+				<img src="" alt=""/>
+
+			</div>
+
+
+
+
+		</div>
+
+		</body>
 	);
 }
