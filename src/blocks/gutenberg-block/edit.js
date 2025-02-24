@@ -92,6 +92,7 @@ export default function Edit({ attributes, setAttributes }) {
 					placeholder={__('Enter bio or description')}
 				/>
 
+				<div className="bio-image-upload">
 				<MediaUpload
 					onSelect={handleImageSelect}
 					type="image"
@@ -102,20 +103,25 @@ export default function Edit({ attributes, setAttributes }) {
 						</Button>
 					)}
 				/>
+				</div>
 				{attributes.image && <img src={attributes.image} alt="Selected image" />}
 
+				<div className="bio-button-container">
 				<RichText
 					tagName="span"
 					value={attributes.buttonText || 'Contact Me'}
 					onChange={handleButtonTextChange}
 					placeholder="Button Text"
+					className="bio-button"
 				/>
 
+				</div>
 				<input
 					type="url"
 					value={attributes.buttonLink}
 					onChange={(e) => handleButtonLinkChange(e.target.value)}
 					placeholder="Button URL"
+					className="bio-button-link"
 				/>
 			</div>
 		</div>

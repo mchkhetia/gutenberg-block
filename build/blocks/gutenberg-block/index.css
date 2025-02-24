@@ -15,7 +15,6 @@
   max-width: 600px;
   margin: 20px auto;
   transition: background-color 0.3s ease-in-out;
-  /* Color Variants */
 }
 .wp-block-mc-gutenberg-block .bio-content .bio-header {
   font-size: 2.5rem;
@@ -36,6 +35,11 @@
   margin-bottom: 25px;
   line-height: 1.6;
 }
+.wp-block-mc-gutenberg-block .bio-content .bio-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
 .wp-block-mc-gutenberg-block .bio-content .bio-button {
   padding: 12px 25px;
   background-color: var(--bio-button-bg, #A991F7);
@@ -46,13 +50,10 @@
   text-transform: uppercase;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
+  display: inline-block;
 }
 .wp-block-mc-gutenberg-block .bio-content .bio-button:hover {
   background-color: #6A5ACD;
-}
-.wp-block-mc-gutenberg-block .bio-content .bio-button.secondary-button {
-  background-color: #F9A8D4;
-  color: #333;
 }
 .wp-block-mc-gutenberg-block .bio-content .bio-image {
   width: 120px;
