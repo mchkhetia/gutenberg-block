@@ -13,6 +13,7 @@ import { __ } from '@wordpress/i18n';
  */
 import {MediaUpload, RichText, useBlockProps} from '@wordpress/block-editor';
 import {Button, ColorPalette} from '@wordpress/components';
+import SocialMediaLinks from '../../components/SocialMedia';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -105,6 +106,11 @@ export default function Edit({ attributes, setAttributes }) {
 				/>
 				</div>
 				{attributes.image && <img src={attributes.image} alt="Selected image" />}
+
+				<SocialMediaLinks
+					twitter={attributes.twitter}
+					linkedin={attributes.linkedin}
+					github={attributes.github} />
 
 				<div className="bio-button-container">
 				<RichText

@@ -85,3 +85,17 @@
   --bio-text-color: #fff;
   --bio-button-bg: #F9A8D4;
 }
+.wp-block-mc-gutenberg-block .bio-social-links {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+.wp-block-mc-gutenberg-block .bio-social-links a {
+  text-decoration: none;
+  color: #0073aa;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.wp-block-mc-gutenberg-block .bio-social-links a:hover {
+  color: #005177;
+}

@@ -36,6 +36,18 @@
     "buttonText": {
       "type": "string",
       "default": "Click Me"
+    },
+    "twitter": {
+      "type": "string",
+      "default": ""
+    },
+    "linkedin": {
+      "type": "string",
+      "default": ""
+    },
+    "github": {
+      "type": "string",
+      "default": ""
     }
   }
 }

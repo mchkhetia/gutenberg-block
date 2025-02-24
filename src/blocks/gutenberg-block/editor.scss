@@ -97,6 +97,23 @@
 			--bio-button-bg: #F9A8D4;
 		}
 	}
+
+	.bio-social-links {
+		display: flex;
+		gap: 10px;
+		margin-top: 10px;
+
+		a {
+			text-decoration: none;
+			color: #0073aa;
+			font-weight: bold;
+			transition: 0.3s;
+
+			&:hover {
+				color: #005177;
+			}
+		}
+	}
 }
 
 

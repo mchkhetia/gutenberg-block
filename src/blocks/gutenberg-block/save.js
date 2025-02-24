@@ -5,6 +5,7 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import {RichText, useBlockProps} from '@wordpress/block-editor';
+import SocialMediaLinks from '../../components/SocialMedia';
 
 /**
  * The save function defines the way in which the different attributes should
@@ -44,6 +45,11 @@ export default function save({attributes}) {
 				<p className="bio-title">
 					<RichText.Content tagName="p" value={attributes.description || 'Default description'} />
 				</p>
+
+				<SocialMediaLinks
+					twitter={attributes.twitter}
+					linkedin={attributes.linkedin}
+					github={attributes.github} />
 
 
 				{attributes.buttonText && attributes.buttonLink && (
