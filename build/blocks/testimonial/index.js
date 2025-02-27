@@ -308,8 +308,20 @@ function save({
   for (let i = 0; i < attributes.stars; i++) {
     stars += '★';
   }
+
+  /**
+   * Style overrides for the block
+   * @type CSSProperties
+   */
+
+  //react translate kabob-case to camelCase
+  const divStyles = {
+    backgroundColor: attributes.backgroundColor,
+    color: attributes.textColor
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save(),
+    style: divStyles,
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "stars",
       children: "\u2605\u2605\u2605"
