@@ -2,20 +2,20 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/blocks/testimonial/block.json":
-/*!*******************************************!*\
-  !*** ./src/blocks/testimonial/block.json ***!
-  \*******************************************/
+/***/ "./src/blocks/gutenberg-block/block.json":
+/*!***********************************************!*\
+  !*** ./src/blocks/gutenberg-block/block.json ***!
+  \***********************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"mc/testimonial","version":"0.1.0","title":"Testimonial","category":"design","icon":"testimonial","description":"Best testimonial block ever","example":{},"supports":{"html":false},"textdomain":"testimonial","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","keywords":["mchkhetia","users","might","search","for"],"attributes":{"quote":{"type":"string","source":"html","selector":".quote"},"author":{"type":"string","source":"html","selector":".author "},"stars":{"type":"number","default":5},"avatarURL":{"type":"string","default":"http://place-hold.it/75"}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"mc/gutenberg-block","version":"0.1.0","title":"Mc Gutenberg Block","category":"design","icon":"smiley","description":"Really cool awesome block, yayyy!","example":{},"supports":{"html":false},"textdomain":"gutenberg-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"header":{"type":"string","default":"Enter Banner Text"},"description":{"type":"string","default":"Some description or text"},"image":{"type":"string","default":"http://place-hold.it/75"},"color":{"type":"string","default":"#A991F7"},"buttonText":{"type":"string","default":"Click Me"},"twitter":{"type":"string","default":""},"linkedin":{"type":"string","default":""},"github":{"type":"string","default":""}}}');
 
 /***/ }),
 
-/***/ "./src/blocks/testimonial/edit.js":
-/*!****************************************!*\
-  !*** ./src/blocks/testimonial/edit.js ***!
-  \****************************************/
+/***/ "./src/blocks/gutenberg-block/edit.js":
+/*!********************************************!*\
+  !*** ./src/blocks/gutenberg-block/edit.js ***!
+  \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -26,10 +26,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/testimonial/editor.scss");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_StarRating__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/StarRating */ "./src/components/StarRating.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_SocialMedia__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/SocialMedia */ "./src/components/SocialMedia.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/gutenberg-block/editor.scss");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
 /**
@@ -47,15 +47,14 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+
+
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-
-
-
 
 
 /**
@@ -67,56 +66,130 @@ __webpack_require__.r(__webpack_exports__);
  * @return {Element} Element to render.
  */
 
-//export default function Edit(props) {}
-//props = {attributes: {...}, setAttributes: function()...
-
 function Edit({
   attributes,
   setAttributes
 }) {
+  const colors = [{
+    name: 'Primary',
+    color: '#A991F7'
+  }, {
+    name: 'Secondary',
+    color: '#FEC8D8'
+  }, {
+    name: 'Accent',
+    color: '#A7F3D0'
+  }, {
+    name: 'Background',
+    color: '#3D348B'
+  }, {
+    name: 'Text',
+    color: '#E0E7FF'
+  }, {
+    name: 'Button',
+    color: '#F9A8D4'
+  }, {
+    name: 'Border',
+    color: '#C4B5FD'
+  }, {
+    name: 'Gradient Start',
+    color: '#6A5ACD'
+  }, {
+    name: 'Gradient End',
+    color: '#FFB6C1'
+  }];
+  const getColorClass = selectedColor => {
+    switch (selectedColor) {
+      case '#A991F7':
+        return 'primary';
+      case '#FEC8D8':
+        return 'secondary';
+      case '#A7F3D0':
+        return 'accent';
+      case '#3D348B':
+        return 'background';
+      default:
+        return 'primary';
+    }
+  };
+  const handleImageSelect = media => {
+    setAttributes({
+      image: media.sizes.full.url
+    });
+  };
+  const handleButtonTextChange = newButtonText => {
+    setAttributes({
+      buttonText: newButtonText
+    });
+  };
+  const handleButtonLinkChange = newButtonLink => {
+    setAttributes({
+      buttonLink: newButtonLink
+    });
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)(),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_StarRating__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
-      className: "quote",
-      tagName: "div",
-      placeholder: "i love cake"
-      //value={props.attributes.quote}
-      ,
-      value: attributes.quote,
-      onChange: value => setAttributes({
-        quote: value
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorPalette, {
+      colors: colors,
+      value: attributes.color,
+      onChange: newColor => setAttributes({
+        color: newColor
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-      className: "quote-profile",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        className: "photo",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
-            onSelect: media => setAttributes({
-              'avatarURL': media.sizes.thumbnail.url
-            }),
-            allowedTypes: ['image'],
-            render: ({
-              open
-            }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
-              onClick: open,
-              src: attributes.avatarURL,
-              alt: "Choose Image"
-            })
+      className: `bio-content ${getColorClass(attributes.color)}`,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
+        className: attributes.color === '#fff' ? 'white-text' : '',
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+          tagName: "div",
+          value: attributes.header,
+          onChange: newHeader => setAttributes({
+            header: newHeader
+          }),
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enter Name')
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+        className: "bio-description",
+        tagName: "p",
+        value: attributes.description,
+        onChange: newDescription => setAttributes({
+          description: newDescription
+        }),
+        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enter bio or description')
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "bio-image-upload",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+          onSelect: handleImageSelect,
+          type: "image",
+          value: attributes.image,
+          render: ({
+            open
+          }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+            onClick: open,
+            children: attributes.image ? 'Change Image' : 'Choose Image'
           })
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-        className: "text",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.PlainText, {
-          className: "author",
-          value: attributes.author,
-          onChange: value => setAttributes({
-            author: value
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
-          className: "location",
-          children: "Point Place, WI"
-        })]
+      }), attributes.image && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+        src: attributes.image,
+        alt: "Selected image"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_SocialMedia__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        twitter: attributes.twitter,
+        linkedin: attributes.linkedin,
+        github: attributes.github
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "bio-button-container",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+          tagName: "span",
+          value: attributes.buttonText || 'Contact Me',
+          onChange: handleButtonTextChange,
+          placeholder: "Button Text",
+          className: "bio-button"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+        type: "url",
+        value: attributes.buttonLink,
+        onChange: e => handleButtonLinkChange(e.target.value),
+        placeholder: "Button URL",
+        className: "bio-button-link"
       })]
     })]
   });
@@ -124,10 +197,10 @@ function Edit({
 
 /***/ }),
 
-/***/ "./src/blocks/testimonial/editor.scss":
-/*!********************************************!*\
-  !*** ./src/blocks/testimonial/editor.scss ***!
-  \********************************************/
+/***/ "./src/blocks/gutenberg-block/editor.scss":
+/*!************************************************!*\
+  !*** ./src/blocks/gutenberg-block/editor.scss ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -136,19 +209,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/blocks/testimonial/index.js":
-/*!*****************************************!*\
-  !*** ./src/blocks/testimonial/index.js ***!
-  \*****************************************/
+/***/ "./src/blocks/gutenberg-block/index.js":
+/*!*********************************************!*\
+  !*** ./src/blocks/gutenberg-block/index.js ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/testimonial/style.scss");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/blocks/testimonial/edit.js");
-/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/blocks/testimonial/save.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/blocks/testimonial/block.json");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/gutenberg-block/style.scss");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/blocks/gutenberg-block/edit.js");
+/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/blocks/gutenberg-block/save.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/blocks/gutenberg-block/block.json");
 /**
  * Registers a new block provided a unique name and an object defining its behavior.
  *
@@ -190,10 +263,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/blocks/testimonial/save.js":
-/*!****************************************!*\
-  !*** ./src/blocks/testimonial/save.js ***!
-  \****************************************/
+/***/ "./src/blocks/gutenberg-block/save.js":
+/*!********************************************!*\
+  !*** ./src/blocks/gutenberg-block/save.js ***!
+  \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -202,14 +275,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_SocialMedia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/SocialMedia */ "./src/components/SocialMedia.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
 /**
  * React hook that is used to mark the block wrapper element.
  * It provides all the necessary props like the class name.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
+
 
 
 /**
@@ -225,48 +300,59 @@ __webpack_require__.r(__webpack_exports__);
 function save({
   attributes
 }) {
-  //build the stars
-  let stars = '';
-  for (let i = 0; i < attributes.stars; i++) {
-    stars += '★';
-  }
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+  const getColorClass = selectedColor => {
+    switch (selectedColor) {
+      case '#A991F7':
+        return 'primary';
+      case '#FEC8D8':
+        return 'secondary';
+      case '#A7F3D0':
+        return 'accent';
+      case '#3D348B':
+        return 'background';
+      default:
+        return 'primary';
+    }
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save(),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "stars",
-      children: "\u2605\u2605\u2605"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
-      tagName: "div",
-      className: "quote",
-      value: attributes.quote
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "quote-profile",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "photo",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-          src: attributes.avatarURL,
-          alt: "Photo of" + attributes.author
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: `bio-content ${attributes.color ? getColorClass(attributes.color) : ''}`,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+        className: "bio-image",
+        src: attributes.image || 'default-image-url.jpg',
+        alt: "Profile image"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+        className: "bio-header",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
+          tagName: "div",
+          value: attributes.header || 'Default header'
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        className: "text",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-          className: "author",
-          children: attributes.author
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-          className: "location",
-          children: "Point Place, WI"
-        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+        className: "bio-title",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
+          tagName: "p",
+          value: attributes.description || 'Default description'
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_SocialMedia__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        twitter: attributes.twitter,
+        linkedin: attributes.linkedin,
+        github: attributes.github
+      }), attributes.buttonText && attributes.buttonLink && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+        href: attributes.buttonLink,
+        className: "bio-button",
+        children: attributes.buttonText
       })]
-    })]
+    })
   });
 }
 
 /***/ }),
 
-/***/ "./src/blocks/testimonial/style.scss":
-/*!*******************************************!*\
-  !*** ./src/blocks/testimonial/style.scss ***!
-  \*******************************************/
+/***/ "./src/blocks/gutenberg-block/style.scss":
+/*!***********************************************!*\
+  !*** ./src/blocks/gutenberg-block/style.scss ***!
+  \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -275,15 +361,15 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/components/StarRating.js":
-/*!**************************************!*\
-  !*** ./src/components/StarRating.js ***!
-  \**************************************/
+/***/ "./src/components/SocialMedia.js":
+/*!***************************************!*\
+  !*** ./src/components/SocialMedia.js ***!
+  \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ StarRating)
+/* harmony export */   "default": () => (/* binding */ SocialMediaLinks)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -291,18 +377,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
 
 
-function StarRating({
-  rating,
-  setRating
+function SocialMediaLinks({
+  twitter,
+  linkedin,
+  github
 }) {
-  const [hover, setHover] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(rating || 0);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    className: "stars",
-    children: [1, 2, 3, 4, 5].map(star => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-      className: "star off",
-      onMouseEnter: () => setHover(star),
-      children: "\u2605"
-    }))
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "bio-social-links",
+    children: [twitter && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+      href: twitter,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      children: "Twitter"
+    }), linkedin && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+      href: linkedin,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      children: "LinkedIn"
+    }), github && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+      href: github,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      children: "GitHub"
+    })]
   });
 }
 
@@ -478,8 +575,8 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"blocks/testimonial/index": 0,
-/******/ 			"blocks/testimonial/style-index": 0
+/******/ 			"blocks/gutenberg-block/index": 0,
+/******/ 			"blocks/gutenberg-block/style-index": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -529,7 +626,7 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/testimonial/style-index"], () => (__webpack_require__("./src/blocks/testimonial/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/gutenberg-block/style-index"], () => (__webpack_require__("./src/blocks/gutenberg-block/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
