@@ -24,8 +24,20 @@ export default function save({attributes}) {
 		stars +='★';
 	}
 
+	/**
+	 * Style overrides for the block
+	 * @type CSSProperties
+	 */
+
+		//react translate kabob-case to camelCase
+	const divStyles = {
+			backgroundColor: attributes.backgroundColor,
+			color: attributes.textColor,
+		}
+
+
 	return (
-	<div { ...useBlockProps.save() }>
+	<div { ...useBlockProps.save() } style={divStyles}>
 		<div className="stars">★★★</div>
 		<RichText.Content
 			tagName="div"
