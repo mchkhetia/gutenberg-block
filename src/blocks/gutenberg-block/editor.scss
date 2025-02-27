@@ -6,12 +6,12 @@
 
 @import "/src/scss/variables";
 
+
 .wp-block-mc-gutenberg-block {
 	.bio-content {
 		padding: 30px;
 		border-radius: 12px;
 		text-align: center;
-		background-color: var(--bio-background, #FEC8D8);
 		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 		max-width: 600px;
 		margin: 20px auto;
@@ -20,21 +20,18 @@
 		.bio-header {
 			font-size: 2.5rem;
 			font-weight: bold;
-			color: var(--bio-text-color, #3D348B);
 			margin-bottom: 15px;
 			font-family: 'Arial', sans-serif;
 		}
 
 		.bio-title {
 			font-size: 1.5rem;
-			color: var(--bio-text-color, #3D348B);
 			font-weight: 500;
 			margin-bottom: 20px;
 		}
 
 		.bio-description {
 			font-size: 1.125rem;
-			color: var(--bio-text-color, #3D348B);
 			margin-bottom: 25px;
 			line-height: 1.6;
 		}
@@ -47,7 +44,6 @@
 
 		.bio-button {
 			padding: 12px 25px;
-			background-color: var(--bio-button-bg, #A991F7);
 			color: #fff;
 			border: none;
 			border-radius: 6px;
@@ -58,7 +54,7 @@
 			display: inline-block;
 
 			&:hover {
-				background-color: #6A5ACD;
+				background-color: var(--bio-button-hover, #6A5ACD);
 			}
 		}
 
@@ -71,31 +67,6 @@
 			border: 4px solid #fff;
 			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 		}
-
-
-		.primary {
-			--bio-background: #A991F7;
-			--bio-text-color: #fff;
-			--bio-button-bg: #F9A8D4;
-		}
-
-		.secondary {
-			--bio-background: #FEC8D8;
-			--bio-text-color: #3D348B;
-			--bio-button-bg: #F9A8D4;
-		}
-
-		.accent {
-			--bio-background: #A7F3D0;
-			--bio-text-color: #3D348B;
-			--bio-button-bg: #F9A8D4;
-		}
-
-		.background {
-			--bio-background: #3D348B;
-			--bio-text-color: #fff;
-			--bio-button-bg: #F9A8D4;
-		}
 	}
 
 	.bio-social-links {
@@ -105,12 +76,12 @@
 
 		a {
 			text-decoration: none;
-			color: #0073aa;
+			color: var(--bio-link-color, #0073aa);
 			font-weight: bold;
 			transition: 0.3s;
 
 			&:hover {
-				color: #005177;
+				color: var(--bio-link-hover, #005177);
 			}
 		}
 	}

@@ -2,6 +2,128 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/blocks/gutenberg-block/BlockSettings.js":
+/*!*****************************************************!*\
+  !*** ./src/blocks/gutenberg-block/BlockSettings.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ BlockSettings)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _common_colors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../common/colors */ "./src/common/colors.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+
+
+
+
+
+function BlockSettings({
+  attributes,
+  setAttributes
+}) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+      title: "Basic",
+      initialOpen: true,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+          children: "Quote Background Color"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorPalette, {
+          colors: _common_colors__WEBPACK_IMPORTED_MODULE_3__["default"],
+          value: attributes.backgroundColor,
+          onChange: backgroundColor => setAttributes({
+            backgroundColor
+          })
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
+          children: "Quote Text Color"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorPicker, {
+          color: attributes.textColor,
+          onChangeComplete: ({
+            hex
+          }) => setAttributes({
+            textColor: hex
+          }),
+          enableAlpha: true
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+      title: "Font & Spacing",
+      initialOpen: false,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
+          children: "Font Size"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+          label: "Font Size",
+          value: attributes.fontSize || 16,
+          onChange: newSize => setAttributes({
+            fontSize: newSize
+          }),
+          min: 10,
+          max: 40
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
+          children: "Padding"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+          label: "Padding",
+          value: attributes.padding || 10,
+          onChange: newPadding => setAttributes({
+            padding: newPadding
+          }),
+          min: 0,
+          max: 50
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+      title: "Button Settings",
+      initialOpen: false,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
+          children: "Show Button"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+          label: "Display Button",
+          checked: attributes.showButton,
+          onChange: newValue => setAttributes({
+            showButton: newValue
+          })
+        })
+      }), attributes.showButton && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+          label: "Button Text",
+          value: attributes.buttonText,
+          onChange: newText => setAttributes({
+            buttonText: newText
+          }),
+          placeholder: "Enter button text"
+        })
+      })]
+    })]
+  });
+}
+
+/***/ }),
+
 /***/ "./src/blocks/gutenberg-block/block.json":
 /*!***********************************************!*\
   !*** ./src/blocks/gutenberg-block/block.json ***!
@@ -30,8 +152,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_SocialMedia__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/SocialMedia */ "./src/components/SocialMedia.js");
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/gutenberg-block/editor.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _BlockSettings__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./BlockSettings */ "./src/blocks/gutenberg-block/BlockSettings.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
 /**
  * Retrieves the translation of text.
  *
@@ -57,6 +180,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+
 /**
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
@@ -70,48 +194,6 @@ function Edit({
   attributes,
   setAttributes
 }) {
-  const colors = [{
-    name: 'Primary',
-    color: '#A991F7'
-  }, {
-    name: 'Secondary',
-    color: '#FEC8D8'
-  }, {
-    name: 'Accent',
-    color: '#A7F3D0'
-  }, {
-    name: 'Background',
-    color: '#3D348B'
-  }, {
-    name: 'Text',
-    color: '#E0E7FF'
-  }, {
-    name: 'Button',
-    color: '#F9A8D4'
-  }, {
-    name: 'Border',
-    color: '#C4B5FD'
-  }, {
-    name: 'Gradient Start',
-    color: '#6A5ACD'
-  }, {
-    name: 'Gradient End',
-    color: '#FFB6C1'
-  }];
-  const getColorClass = selectedColor => {
-    switch (selectedColor) {
-      case '#A991F7':
-        return 'primary';
-      case '#FEC8D8':
-        return 'secondary';
-      case '#A7F3D0':
-        return 'accent';
-      case '#3D348B':
-        return 'background';
-      default:
-        return 'primary';
-    }
-  };
   const handleImageSelect = media => {
     setAttributes({
       image: media.sizes.full.url
@@ -127,70 +209,69 @@ function Edit({
       buttonLink: newButtonLink
     });
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+  const divStyles = {
+    backgroundColor: attributes.backgroundColor,
+    color: attributes.textColor
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)(),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorPalette, {
-      colors: colors,
-      value: attributes.color,
-      onChange: newColor => setAttributes({
-        color: newColor
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-      className: `bio-content ${getColorClass(attributes.color)}`,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
-        className: attributes.color === '#fff' ? 'white-text' : '',
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
-          tagName: "div",
-          value: attributes.header,
-          onChange: newHeader => setAttributes({
-            header: newHeader
-          }),
-          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enter Name')
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
-        className: "bio-description",
-        tagName: "p",
-        value: attributes.description,
-        onChange: newDescription => setAttributes({
-          description: newDescription
+    style: divStyles,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_BlockSettings__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      attributes: attributes,
+      setAttributes: setAttributes
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
+      className: attributes.textColor,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+        tagName: "div",
+        value: attributes.header,
+        onChange: newHeader => setAttributes({
+          header: newHeader
         }),
-        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enter bio or description')
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        className: "bio-image-upload",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
-          onSelect: handleImageSelect,
-          type: "image",
-          value: attributes.image,
-          render: ({
-            open
-          }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
-            onClick: open,
-            children: attributes.image ? 'Change Image' : 'Choose Image'
-          })
+        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enter Name')
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+      className: "bio-description",
+      tagName: "p",
+      value: attributes.description,
+      onChange: newDescription => setAttributes({
+        description: newDescription
+      }),
+      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enter bio or description')
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      className: "bio-image-upload",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+        onSelect: handleImageSelect,
+        type: "image",
+        value: attributes.image,
+        render: ({
+          open
+        }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+          onClick: open,
+          children: attributes.image ? 'Change Image' : 'Choose Image'
         })
-      }), attributes.image && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
-        src: attributes.image,
-        alt: "Selected image"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_SocialMedia__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        twitter: attributes.twitter,
-        linkedin: attributes.linkedin,
-        github: attributes.github
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        className: "bio-button-container",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
-          tagName: "span",
-          value: attributes.buttonText || 'Contact Me',
-          onChange: handleButtonTextChange,
-          placeholder: "Button Text",
-          className: "bio-button"
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-        type: "url",
-        value: attributes.buttonLink,
-        onChange: e => handleButtonLinkChange(e.target.value),
-        placeholder: "Button URL",
-        className: "bio-button-link"
-      })]
+      })
+    }), attributes.image && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
+      src: attributes.image,
+      alt: "Selected image"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_SocialMedia__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      twitter: attributes.twitter,
+      linkedin: attributes.linkedin,
+      github: attributes.github
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      className: "bio-button-container",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+        tagName: "span",
+        value: attributes.buttonText || 'Contact Me',
+        onChange: handleButtonTextChange,
+        placeholder: "Button Text",
+        className: "bio-button"
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+      type: "url",
+      value: attributes.buttonLink,
+      onChange: e => handleButtonLinkChange(e.target.value),
+      placeholder: "Button URL",
+      className: "bio-button-link"
     })]
   });
 }
@@ -276,14 +357,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_SocialMedia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/SocialMedia */ "./src/components/SocialMedia.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_block_editor_build_hooks_color__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor/build/hooks/color */ "@wordpress/block-editor/build/hooks/color");
+/* harmony import */ var _wordpress_block_editor_build_hooks_color__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor_build_hooks_color__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
 /**
  * React hook that is used to mark the block wrapper element.
  * It provides all the necessary props like the class name.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
+
 
 
 
@@ -300,45 +384,36 @@ __webpack_require__.r(__webpack_exports__);
 function save({
   attributes
 }) {
-  const getColorClass = selectedColor => {
-    switch (selectedColor) {
-      case '#A991F7':
-        return 'primary';
-      case '#FEC8D8':
-        return 'secondary';
-      case '#A7F3D0':
-        return 'accent';
-      case '#3D348B':
-        return 'background';
-      default:
-        return 'primary';
-    }
+  const divStyles = {
+    backgroundColor: attributes.backgroundColor,
+    color: attributes.textColor
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save(),
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: `bio-content ${attributes.color ? getColorClass(attributes.color) : ''}`,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+    style: divStyles,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "bio-content",
+      children: [attributes.image && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
         className: "bio-image",
         src: attributes.image || 'default-image-url.jpg',
         alt: "Profile image"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
-        className: "bio-header",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
+        className: attributes.textColor,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
           tagName: "div",
           value: attributes.header || 'Default header'
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
         className: "bio-title",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
           tagName: "p",
           value: attributes.description || 'Default description'
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_SocialMedia__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_SocialMedia__WEBPACK_IMPORTED_MODULE_1__["default"], {
         twitter: attributes.twitter,
         linkedin: attributes.linkedin,
         github: attributes.github
-      }), attributes.buttonText && attributes.buttonLink && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+      }), attributes.showButton && attributes.buttonText && attributes.buttonLink && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
         href: attributes.buttonLink,
         className: "bio-button",
         children: attributes.buttonText
@@ -358,6 +433,48 @@ function save({
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
+
+/***/ }),
+
+/***/ "./src/common/colors.js":
+/*!******************************!*\
+  !*** ./src/common/colors.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const colors = [{
+  name: 'primary',
+  color: '#A991F7'
+}, {
+  name: 'secondary',
+  color: '#FEC8D8'
+}, {
+  name: 'accent',
+  color: '#A7F3D0'
+}, {
+  name: 'background',
+  color: '#3D348B'
+}, {
+  name: 'red',
+  color: '#f00'
+}, {
+  name: 'white',
+  color: '#fff'
+}, {
+  name: 'blue',
+  color: '#00f'
+}, {
+  name: 'button',
+  color: '#F9A8D4'
+}, {
+  name: 'border',
+  color: '#C4B5FD'
+}];
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (colors);
 
 /***/ }),
 
@@ -412,6 +529,16 @@ function SocialMediaLinks({
 /***/ ((module) => {
 
 module.exports = window["wp"]["blockEditor"];
+
+/***/ }),
+
+/***/ "@wordpress/block-editor/build/hooks/color":
+/*!*******************************************************!*\
+  !*** external ["wp","blockEditor/build/hooks/color"] ***!
+  \*******************************************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["blockEditor/build/hooks/color"];
 
 /***/ }),
 
