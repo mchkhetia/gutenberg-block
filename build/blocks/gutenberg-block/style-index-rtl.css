@@ -2,8 +2,7 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/gutenberg-block/style.scss ***!
   \**************************************************************************************************************************************************************************************************************************************************************/
 /**
- * The following styles get applied both on the front of your site
- * and in the editor.
+ * The following styles get applied inside the editor only.
  *
  * Replace them with your own styles or remove the file completely.
  */
@@ -11,35 +10,34 @@
   padding: 30px;
   border-radius: 12px;
   text-align: center;
-  background-color: var(--bio-background, #FEC8D8);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   max-width: 600px;
   margin: 20px auto;
   transition: background-color 0.3s ease-in-out;
-  /* Color Variants */
 }
 .wp-block-mc-gutenberg-block .bio-content .bio-header {
   font-size: 2.5rem;
   font-weight: bold;
-  color: var(--bio-text-color, #3D348B);
   margin-bottom: 15px;
   font-family: "Arial", sans-serif;
 }
 .wp-block-mc-gutenberg-block .bio-content .bio-title {
   font-size: 1.5rem;
-  color: var(--bio-text-color, #3D348B);
   font-weight: 500;
   margin-bottom: 20px;
 }
 .wp-block-mc-gutenberg-block .bio-content .bio-description {
   font-size: 1.125rem;
-  color: var(--bio-text-color, #3D348B);
   margin-bottom: 25px;
   line-height: 1.6;
 }
+.wp-block-mc-gutenberg-block .bio-content .bio-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
 .wp-block-mc-gutenberg-block .bio-content .bio-button {
   padding: 12px 25px;
-  background-color: var(--bio-button-bg, #A991F7);
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -47,13 +45,10 @@
   text-transform: uppercase;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
+  display: inline-block;
 }
 .wp-block-mc-gutenberg-block .bio-content .bio-button:hover {
-  background-color: #6A5ACD;
-}
-.wp-block-mc-gutenberg-block .bio-content .bio-button.secondary-button {
-  background-color: #F9A8D4;
-  color: #333;
+  background-color: var(--bio-button-hover, #6A5ACD);
 }
 .wp-block-mc-gutenberg-block .bio-content .bio-image {
   width: 120px;
@@ -65,26 +60,6 @@
   border: 4px solid #fff;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
-.wp-block-mc-gutenberg-block .bio-content .primary {
-  --bio-background: #A991F7;
-  --bio-text-color: #fff;
-  --bio-button-bg: #F9A8D4;
-}
-.wp-block-mc-gutenberg-block .bio-content .secondary {
-  --bio-background: #FEC8D8;
-  --bio-text-color: #3D348B;
-  --bio-button-bg: #F9A8D4;
-}
-.wp-block-mc-gutenberg-block .bio-content .accent {
-  --bio-background: #A7F3D0;
-  --bio-text-color: #3D348B;
-  --bio-button-bg: #F9A8D4;
-}
-.wp-block-mc-gutenberg-block .bio-content .background {
-  --bio-background: #3D348B;
-  --bio-text-color: #fff;
-  --bio-button-bg: #F9A8D4;
-}
 .wp-block-mc-gutenberg-block .bio-social-links {
   display: flex;
   gap: 10px;
@@ -92,10 +67,10 @@
 }
 .wp-block-mc-gutenberg-block .bio-social-links a {
   text-decoration: none;
-  color: #0073aa;
+  color: var(--bio-link-color, #0073aa);
   font-weight: bold;
   transition: 0.3s;
 }
 .wp-block-mc-gutenberg-block .bio-social-links a:hover {
-  color: #005177;
+  color: var(--bio-link-hover, #005177);
 }

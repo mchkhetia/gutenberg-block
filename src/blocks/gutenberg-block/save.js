@@ -6,6 +6,7 @@
  */
 import {RichText, useBlockProps} from '@wordpress/block-editor';
 import SocialMediaLinks from '../../components/SocialMedia';
+import color from "@wordpress/block-editor/build/hooks/color";
 
 /**
  * The save function defines the way in which the different attributes should
@@ -18,50 +19,45 @@ import SocialMediaLinks from '../../components/SocialMedia';
  */
 export default function save({attributes}) {
 
-	const getColorClass = (selectedColor) => {
-		switch (selectedColor) {
-			case '#A991F7': return 'primary';
-			case '#FEC8D8': return 'secondary';
-			case '#A7F3D0': return 'accent';
-			case '#3D348B': return 'background';
-			default: return 'primary';
-		}
-	};
 
+	const divStyles = {
+		backgroundColor: attributes.backgroundColor,
+		color: attributes.textColor,
+	}
 
 	return (
-		<div {...useBlockProps.save()}>
-			<div className={`bio-content ${attributes.color ? getColorClass(attributes.color) : ''}`}>
+		<div {...useBlockProps.save()} style={divStyles}>
+			<div className="bio-content" >
+				{attributes.image && (
+					<img
+						className="bio-image"
+						src={attributes.image}
+						alt="Profile image"
+					/>
+				)}
 
-				<img
-					className="bio-image"
-					src={attributes.image || 'default-image-url.jpg'}
-					alt="Profile image"
-				/>
-
-				<h1 className="bio-header">
-					<RichText.Content tagName="div" value={attributes.header || 'Default header'} />
+				<h1 className={attributes.textColor}>
+					<RichText.Content tagName="div" value={attributes.header} />
 				</h1>
+
 				<p className="bio-title">
-					<RichText.Content tagName="p" value={attributes.description || 'Default description'} />
+					<RichText.Content tagName="p"
+
+									  value={attributes.description} />
 				</p>
 
 				<SocialMediaLinks
 					twitter={attributes.twitter}
 					linkedin={attributes.linkedin}
-					github={attributes.github} />
+					github={attributes.github}
+				/>
 
-
-				{attributes.buttonText && attributes.buttonLink && (
+				{attributes.showButton && attributes.buttonText && attributes.buttonLink && (
 					<a href={attributes.buttonLink} className="bio-button">
 						{attributes.buttonText}
 					</a>
 				)}
-
-
-
-		</div>
-
+			</div>
 		</div>
 	);
 }
