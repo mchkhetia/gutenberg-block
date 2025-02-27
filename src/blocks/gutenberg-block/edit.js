@@ -60,7 +60,9 @@ export default function Edit({ attributes, setAttributes }) {
 
 	return (
 		<div {...useBlockProps()} style={divStyles}>
-			<BlockSettings attributes={attributes} setAttributes={setAttributes} />
+			<BlockSettings
+				attributes={attributes}
+						   setAttributes={setAttributes} />
 
 
 				<h1 className={attributes.textColor}>
@@ -111,7 +113,8 @@ export default function Edit({ attributes, setAttributes }) {
 				<input
 					type="url"
 					value={attributes.buttonLink}
-					onChange={(e) => handleButtonLinkChange(e.target.value)}
+					onChange={(e) =>
+						handleButtonLinkChange(e.target.value)}
 					placeholder="Button URL"
 					className="bio-button-link"
 				/>

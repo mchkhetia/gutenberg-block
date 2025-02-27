@@ -29,10 +29,7 @@
 			"type": "string",
 			"default": "http://place-hold.it/75"
 		},
-		"color": {
-			"type": "string",
-			"default": "#A991F7"
-		},
+
 		"buttonText": {
 			"type": "string",
 			"default": "Click Me"
@@ -48,6 +45,12 @@
 		"github": {
 			"type": "string",
 			"default": ""
+		},
+		"backgroundColor": {
+			"type": "string"
+		},
+		"textColor": {
+			"type": "string"
 		}
 	}
 }

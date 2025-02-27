@@ -31,17 +31,19 @@ export default function save({attributes}) {
 				{attributes.image && (
 					<img
 						className="bio-image"
-						src={attributes.image || 'default-image-url.jpg'}
+						src={attributes.image}
 						alt="Profile image"
 					/>
 				)}
 
 				<h1 className={attributes.textColor}>
-					<RichText.Content tagName="div" value={attributes.header || 'Default header'} />
+					<RichText.Content tagName="div" value={attributes.header} />
 				</h1>
 
 				<p className="bio-title">
-					<RichText.Content tagName="p" value={attributes.description || 'Default description'} />
+					<RichText.Content tagName="p"
+
+									  value={attributes.description} />
 				</p>
 
 				<SocialMediaLinks
