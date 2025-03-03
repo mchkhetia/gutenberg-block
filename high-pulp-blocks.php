@@ -27,7 +27,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 function mc_high_pulp_blocks_block_init() {
 	register_block_type( __DIR__ . '/build/blocks/high-pulp-blocks' );
 	register_block_type( __DIR__ . '/build/blocks/testimonial' );
-	register_block_type( __DIR__ . '/build/blocks/gutenberg-block' );
+	register_block_type( __DIR__ . '/build/filters/border-control' );
+	register_block_type( __DIR__ . '/build/blocks/staff-list' );
 
 }
 add_action( 'init', 'mc_high_pulp_blocks_block_init' );
