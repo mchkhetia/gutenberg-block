@@ -1,6 +1,5 @@
 <?php
 function mc_add_borders( $block_content = '', $block = [] ) {
-	// TODO: create wrapper
 	$defaults= [
 		'bcBorderStyle'=> 'none',
 		'bcPadding'=> '10px',
@@ -27,6 +26,20 @@ function mc_add_borders( $block_content = '', $block = [] ) {
 
 add_filter( 'render_block', 'mc_add_borders', 10, 2 );
 
+
+add_filter('block_type_metadata', function ($metadata) {
+	$additionalMetadata = [
+		'attributes' => [
+			'bcBorderStyle' => ['type' => 'string'],
+			'bcPadding' => ['type' => 'number', 'default' => '10px'],
+//			'bcBorderWidth' => ['type' => 'number'],
+//			'bcBorderRadius' => ['type' => 'number'],
+//			'bcBorderColor' => ['type' => 'string'],
+		]
+
+	];
+	return array_merge_recursive($metadata, $additionalMetadata);
+});
 //includes
 
 include __DIR__.'/filters.php';
