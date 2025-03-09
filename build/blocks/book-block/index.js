@@ -8,7 +8,7 @@
   \******************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"mc/book-block","version":"0.1.0","title":"Book Block","category":"design","icon":"dashicons-book-alt","description":"Show my cool books yay","example":{},"supports":{"html":false},"textdomain":"book-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"mc/book-block","version":"0.1.0","title":"Book Block","category":"design","icon":"dashicons-book-alt","description":"Show my cool books yay","example":{},"supports":{"html":false},"textdomain":"book-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js","attributes":{"cardColor":{"type":"string","default":"#ffffff"},"headingColor":{"type":"string","default":"#333333"},"textColor":{"type":"string","default":"#666666"}}}');
 
 /***/ }),
 
