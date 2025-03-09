@@ -16,5 +16,19 @@
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
   "render": "file:./render.php",
-  "viewScript": "file:./view.js"
+  "viewScript": "file:./view.js",
+  "attributes": {
+    "cardColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "headingColor": {
+      "type": "string",
+      "default": "#333333"
+    },
+    "textColor": {
+      "type": "string",
+      "default": "#666666"
+    }
+  }
 }
