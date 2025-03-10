@@ -1,0 +1,58 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "mc/book-block",
+	"version": "0.1.0",
+	"title": "Book Block",
+	"category": "design",
+	"icon": "dashicons-book-alt",
+	"description": "Show my cool books yay",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "book-block",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js",
+	"attributes": {
+		"cardColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"headingColor": {
+			"type": "string",
+			"default": "#000000"
+		},
+		"textColor": {
+			"type": "string",
+			"default": "#333333"
+		},
+		"bookCover": {
+			"type": "string",
+			"default": ""
+		},
+		"placeholder": {
+			"type": "string",
+			"default": "https://via.placeholder.com/150"
+		},
+		"authorPublisher": {
+			"type": "string",
+			"default": "Unknown Author / Publisher"
+		},
+		"publishedDate": {
+			"type": "string",
+			"default": "Not Available"
+		},
+		"bookPageCount": {
+			"type": "number",
+			"default": 0
+		},
+		"bookPrice": {
+			"type": "number",
+			"default": 0.00
+		}
+	}
+}
