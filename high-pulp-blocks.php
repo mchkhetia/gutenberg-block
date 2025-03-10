@@ -35,3 +35,4 @@ function mc_high_pulp_blocks_block_init() {
 }
 add_action( 'init', 'mc_high_pulp_blocks_block_init' );
 
+

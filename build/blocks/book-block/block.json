@@ -24,11 +24,35 @@
     },
     "headingColor": {
       "type": "string",
-      "default": "#333333"
+      "default": "#000000"
     },
     "textColor": {
       "type": "string",
-      "default": "#666666"
+      "default": "#333333"
+    },
+    "bookCover": {
+      "type": "string",
+      "default": ""
+    },
+    "placeholder": {
+      "type": "string",
+      "default": "https://via.placeholder.com/150"
+    },
+    "authorPublisher": {
+      "type": "string",
+      "default": "Unknown Author / Publisher"
+    },
+    "publishedDate": {
+      "type": "string",
+      "default": "Not Available"
+    },
+    "bookPageCount": {
+      "type": "number",
+      "default": 0
+    },
+    "bookPrice": {
+      "type": "number",
+      "default": 0
     }
   }
 }
