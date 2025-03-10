@@ -1,0 +1,53 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "mc/gutenberg-block",
+  "version": "0.1.0",
+  "title": "Mc Gutenberg Block",
+  "category": "design",
+  "icon": "smiley",
+  "description": "Really cool awesome block, yayyy!",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "textdomain": "gutenberg-block",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js",
+  "attributes": {
+    "header": {
+      "type": "string",
+      "default": "Enter Banner Text"
+    },
+    "description": {
+      "type": "string",
+      "default": "Some description or text"
+    },
+    "image": {
+      "type": "string",
+      "default": "http://place-hold.it/75"
+    },
+    "color": {
+      "type": "string",
+      "default": "#A991F7"
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Click Me"
+    },
+    "twitter": {
+      "type": "string",
+      "default": ""
+    },
+    "linkedin": {
+      "type": "string",
+      "default": ""
+    },
+    "github": {
+      "type": "string",
+      "default": ""
+    }
+  }
+}
