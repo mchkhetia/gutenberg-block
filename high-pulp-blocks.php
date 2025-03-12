@@ -32,6 +32,7 @@ function mc_high_pulp_blocks_block_init() {
 	register_block_type( __DIR__ . '/build/blocks/staff-directory' );
 	register_block_type( __DIR__ . '/build/blocks/book-block' );
 	register_block_type( __DIR__ . '/build/blocks/submit-review' );
+	register_block_type( __DIR__ . '/build/blocks/react-app' );
 
 //add api client for submit-review block
 	wp_enqueue_script( 'wp-api' );
