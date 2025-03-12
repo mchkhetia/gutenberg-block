@@ -5,7 +5,7 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import { useBlockProps } from '@wordpress/block-editor';
-
+import './styles.css';
 /**
  * The save function defines the way in which the different attributes should
  * be combined into the final markup, which is then serialized by the block
@@ -17,15 +17,16 @@ import { useBlockProps } from '@wordpress/block-editor';
  */
 export default function save() {
 	return (
-		<p { ...useBlockProps.save() }>
+		<div { ...useBlockProps.save() }>
 
 			<div id="react-app">
 				<div className="skeleton-loader">
 					<div className="skeleton-card" />
+					Loading...
 					<div className="skeleton-card" />
 					<div className="skeleton-card" />
 				</div>
 			</div>
-		</p>
+		</div>
 	);
 }
