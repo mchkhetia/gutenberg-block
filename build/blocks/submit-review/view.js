@@ -48,8 +48,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_StarRating__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/StarRating */ "./src/components/StarRating.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 // TODO: import StarRating from "../../../components/StarRating";
@@ -66,7 +68,8 @@ function AddReviewForm(props) {
       acf: {
         review_rating: rating || 0
       },
-      // maybe you should validate better before doing this?
+      // maybe you should validate better before doing this? you could set it to 'draft' so that it would need yout approval
+
       status: 'publish'
     };
 
@@ -79,27 +82,23 @@ function AddReviewForm(props) {
     setRating(0);
     setReview('');
   }
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
     className: "new-review-form",
     onSubmit: e => addReview(e),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
       label: "Title",
       value: title,
       onChange: title => setTitle(title),
       __nextHasNoMarginBottom: true
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
-      label: "Overall Rating",
-      value: rating,
-      onChange: rating => setRating(rating),
-      min: 0,
-      max: 5,
-      step: 1
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextareaControl, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_StarRating__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      rating: rating,
+      setRating: setRating
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextareaControl, {
       label: "Review",
       value: review,
-      onInput: e => setReview(e.target.value),
+      onChange: review => setReview(review),
       __nextHasNoMarginBottom: true
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
       className: "wp-element-button",
       type: "submit",
       children: "Add Review"
@@ -132,6 +131,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function BlockApp() {
   const [reviews, setReviews] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [loggedIn, setLoggedIn] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
@@ -145,12 +145,35 @@ function BlockApp() {
   }, []);
   function getReviews(page = 1) {
     // TODO: getReviews
+
+    const reviewsCollection = new wp.api.collections.Review();
+    reviewsCollection.fetch({
+      data: {
+        per_page: 3,
+        page: page
+      }
+    }) // return a jqXHR (yay jquery)
+    .done(data => {
+      //console.log(data, reviewsCollection.models);
+      //store a COPY of the models in the app
+      setReviews([...reviewsCollection.models]);
+      setPagination({
+        ...reviewsCollection.state
+      });
+    });
   }
   function deleteReview(review) {
-    // TODO: deleteReview
+    review.destroy() // <-- backbone method for each model
+    .done(data => {
+      getReviews();
+    });
   }
   function addReview(newReview) {
-    // TODO: addReview
+    const post = new wp.api.colllections.Review(newReview);
+    post.save() // return a jqXHR (yay jquery)\
+    .done(data => {
+      getReviews();
+    });
   }
   function getLoggedInUser() {
     let user = new wp.api.models.UsersMe();
@@ -166,7 +189,12 @@ function BlockApp() {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
       children: "Latest Reviews"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ReviewList__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      reviews: reviews
+      reviews: reviews,
+      deleteReview: deleteReview
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ReviewPagination__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      currentPage: pagination.currentPage,
+      totalPages: pagination.totalPages,
+      setPage: getReviews
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
       children: "Submit a Review"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_AddReviewForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -194,10 +222,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_StarRating__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../components/StarRating */ "./src/components/StarRating.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
 
-// TODO: import StarRating from "../../../components/StarRating";
+
 
 function ReviewCard({
   title,
@@ -205,21 +234,30 @@ function ReviewCard({
   review,
   destroy
 }) {
-  // TODO: add delete functionality
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+  function deleteReviews() {
+    if (confirm('Are you sure you want to delete this review?"' + title + '"?')) {
+      destroy();
+    }
+  }
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "review-card",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "review-title",
       children: title
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "review-rating",
-      children: rating
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_StarRating__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        rating: rating,
+        readonly: true
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "review-content",
       dangerouslySetInnerHTML: {
         __html: review
       }
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+      onClick: deleteReviews,
+      children: "destroy"
     })]
   });
 }
@@ -252,8 +290,9 @@ function ReviewList({
     className: "review-list",
     children: reviews.map(review => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ReviewCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
       title: review.attributes.title.rendered,
-      rating: review.attributes.acf.review_rating,
-      review: review.attributes.content.rendered
+      rating: review.attributes.acf.review_rating || 3,
+      review: review.attributes.content.rendered,
+      destroy: () => deleteReview(review)
     }, review.attributes.id))
   });
 }
@@ -317,6 +356,56 @@ function ReviewPagination({
     })]
   });
 }
+
+/***/ }),
+
+/***/ "./src/components/StarRating.js":
+/*!**************************************!*\
+  !*** ./src/components/StarRating.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ StarRating)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _StarRating_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./StarRating.scss */ "./src/components/StarRating.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+function StarRating({
+  rating,
+  setRating,
+  readonly
+}) {
+  const [hover, setHover] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(rating || 0);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "stars",
+    children: [1, 2, 3, 4, 5].map(star => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+      className: star <= hover ? 'star on' : 'star off',
+      onMouseEnter: () => !readonly && setHover(star),
+      onMouseLeave: () => !readonly && setHover(rating),
+      onClick: () => !readonly && setRating(star),
+      children: "\u2605 "
+    }, star))
+  });
+}
+
+/***/ }),
+
+/***/ "./src/components/StarRating.scss":
+/*!****************************************!*\
+  !*** ./src/components/StarRating.scss ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
 
 /***/ }),
 

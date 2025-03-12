@@ -1,16 +1,26 @@
 import React from "react";
-// TODO: import StarRating from "../../../components/StarRating";
+import StarRating from "../../../components/StarRating";
 
 export default function ReviewCard({title, rating, review, destroy}) {
-	// TODO: add delete functionality
+
+	function deleteReviews() {
+		if(confirm('Are you sure you want to delete this review?"' + title + '"?')) {
+			destroy();
+
+
+		}
+	}
 
 	return (
 		<div className="review-card">
 			<div className="review-title">{title}</div>
-			<div className="review-rating">{rating}</div>
-			{/*	TODO: use StarRating component? */}
+			<div className="review-rating">
+			<StarRating rating={rating} readonly />
+			</div>
+
 			<div className="review-content" dangerouslySetInnerHTML={{__html: review}}></div>
-			{/* TODO: add delete button */}
+
+			<button onClick={deleteReviews}>destroy</button>
 		</div>
 	);
 }

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import AddReviewForm from "./AddReviewForm";
 import ReviewList from "./ReviewList";
 import ReviewPagination from "./ReviewPagination";
+import {page} from "@wordpress/icons";
 
 export default function BlockApp() {
 	const [reviews, setReviews] = useState([]);
@@ -17,14 +18,35 @@ export default function BlockApp() {
 
 	function getReviews(page = 1) {
 		// TODO: getReviews
+
+		const reviewsCollection = new wp.api.collections.Review();
+		reviewsCollection
+			.fetch({data: {per_page: 3, page:page}}) // return a jqXHR (yay jquery)
+			.done( data => {
+			//console.log(data, reviewsCollection.models);
+			//store a COPY of the models in the app
+			setReviews([...reviewsCollection.models]);
+			setPagination({...reviewsCollection.state})
+		})
+
 	}
 
 	function deleteReview(review){
-		// TODO: deleteReview
+
+
+		review.destroy() // <-- backbone method for each model
+			.done(data => {
+			getReviews();
+		})
 	}
 
 	function addReview(newReview) {
-		// TODO: addReview
+
+		const post = new wp.api.colllections.Review(newReview);
+		post.save()  // return a jqXHR (yay jquery)\
+			.done(data => {
+				getReviews();
+			})
 	}
 
 	function getLoggedInUser() {
@@ -43,8 +65,12 @@ export default function BlockApp() {
 	return (
 		<div>
 			<h3>Latest Reviews</h3>
-			<ReviewList reviews={reviews} />
-			{/* TODO: add pagination */}
+			<ReviewList reviews={reviews} deleteReview={deleteReview} />
+			<ReviewPagination
+				currentPage={pagination.currentPage}
+				totalPages={pagination.totalPages}
+				setPage={getReviews}
+			/>
 			<hr/>
 			<h3>Submit a Review</h3>
 			{/* TODO: only show form if the user is logged in */}

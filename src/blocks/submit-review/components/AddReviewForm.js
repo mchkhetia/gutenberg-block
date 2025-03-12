@@ -4,6 +4,7 @@ import {
 	__experimentalNumberControl as NumberControl,
 	TextareaControl, Button
 } from "@wordpress/components";
+import StarRating from "../../../components/StarRating";
 // TODO: import StarRating from "../../../components/StarRating";
 
 export default function AddReviewForm(props) {
@@ -21,7 +22,8 @@ export default function AddReviewForm(props) {
 				review_rating: rating || 0,
 			},
 
-			// maybe you should validate better before doing this?
+			// maybe you should validate better before doing this? you could set it to 'draft' so that it would need yout approval
+
 			status: 'publish',
 		}
 
@@ -48,20 +50,21 @@ export default function AddReviewForm(props) {
 				__nextHasNoMarginBottom
 			/>
 
-			<NumberControl
-				label="Overall Rating"
-				value={rating}
-				onChange={rating => setRating(rating)}
-				min={0}
-				max={5}
-				step={1}
-			/>
-			{/*	TODO: Use StarRating component? */}
+			{/*<NumberControl*/}
+			{/*	label="Overall Rating"*/}
+			{/*	value={rating}*/}
+			{/*	onChange={rating => setRating(rating)}*/}
+			{/*	min={0}*/}
+			{/*	max={5}*/}
+			{/*	step={1}*/}
+			{/*/>*/}
+
+			<StarRating rating={rating} setRating={setRating} />
 
 			<TextareaControl
 				label="Review"
 				value={review}
-				onInput={e => setReview(e.target.value)}
+				onChange={review => setReview(review)}
 				__nextHasNoMarginBottom
 			/>
 
