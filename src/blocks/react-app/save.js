@@ -19,14 +19,7 @@ export default function save() {
 	return (
 		<div { ...useBlockProps.save() }>
 
-			<div id="react-app">
-				<div className="skeleton-loader">
-					<div className="skeleton-card" />
-					Loading...
-					<div className="skeleton-card" />
-					<div className="skeleton-card" />
-				</div>
-			</div>
+			Loading...
 		</div>
 	);
 }

@@ -31,8 +31,8 @@ import './editor.scss';
  */
 export default function Edit() {
 	return (
-		<p { ...useBlockProps() }>
+		<div { ...useBlockProps() }>
 			React block will go here Yay
-		</p>
+		</div>
 	);
 }

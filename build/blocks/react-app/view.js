@@ -34,6 +34,61 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./src/blocks/react-app/react-stuff/Filter.js":
+/*!****************************************************!*\
+  !*** ./src/blocks/react-app/react-stuff/Filter.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Filter)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function Filter({
+  filter,
+  setFilter
+}) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "filter-container",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+      className: "filter-input",
+      type: "text",
+      placeholder: "Role",
+      value: filter.student_role,
+      onChange: e => setFilter({
+        ...filter,
+        student_role: e.target.value
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+      className: "filter-input",
+      type: "text",
+      placeholder: "Email",
+      value: filter.student_email,
+      onChange: e => setFilter({
+        ...filter,
+        student_email: e.target.value
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+      className: "filter-input",
+      type: "text",
+      placeholder: "Phone",
+      value: filter.student_phone,
+      onChange: e => setFilter({
+        ...filter,
+        student_phone: e.target.value
+      })
+    })]
+  });
+}
+
+/***/ }),
+
 /***/ "./src/blocks/react-app/react-stuff/ReactApp.js":
 /*!******************************************************!*\
   !*** ./src/blocks/react-app/react-stuff/ReactApp.js ***!
@@ -46,92 +101,90 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _StudantList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./StudantList */ "./src/blocks/react-app/react-stuff/StudantList.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _StudentList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./StudentList */ "./src/blocks/react-app/react-stuff/StudentList.js");
+/* harmony import */ var _Filter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Filter */ "./src/blocks/react-app/react-stuff/Filter.js");
+/* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Search */ "./src/blocks/react-app/react-stuff/Search.js");
+/* harmony import */ var _Sort__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Sort */ "./src/blocks/react-app/react-stuff/Sort.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
 
 
 
 function ReactApp() {
-  const [studants, setstudants] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const [students, setStudents] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const [filter, setFilter] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    student_role: '',
+    student_email: '',
+    student_phone: ''
+  });
+  const [searchTerm, setSearchTerm] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [sortOption, setSortOption] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    fetch('/wp-json/wp/v2/studant').then(response => response.json()).then(data => {
-      console.log(data);
-      setstudants(data);
+    fetch('/wp-json/wp/v2/student?_embed').then(response => response.json()).then(data => {
+      setStudents(data);
+      setLoading(false);
     });
   }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "app",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
-        children: "Integrated studants"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_StudantList__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        studants: studants
-      })]
-    })
+  const filteredStudents = students.filter(student => {
+    const {
+      student_role,
+      student_email,
+      student_phone
+    } = filter;
+    const searchMatch = student.acf.student_role.toLowerCase().includes(searchTerm.toLowerCase()) || student.acf.student_email.toLowerCase().includes(searchTerm.toLowerCase()) || student.acf.student_phone.includes(searchTerm);
+    return (student_role === '' || student.acf.student_role.toLowerCase().includes(student_role.toLowerCase())) && (student_email === '' || student.acf.student_email.toLowerCase().includes(student_email.toLowerCase())) && (student_phone === '' || student.acf.student_phone.includes(student_phone)) && searchMatch;
   });
-}
-
-/***/ }),
-
-/***/ "./src/blocks/react-app/react-stuff/StudantCard.js":
-/*!*********************************************************!*\
-  !*** ./src/blocks/react-app/react-stuff/StudantCard.js ***!
-  \*********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ StudantCard)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _StudantImage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./StudantImage */ "./src/blocks/react-app/react-stuff/StudantImage.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-function StudantCard({
-  studant
-}) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    className: "studant-card",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_StudantImage__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      studant: studant
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
-      children: studant.title.rendered
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("strong", {
-        children: "Role:"
-      }), " ", studant.acf.studant_role]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("strong", {
-        children: "Email:"
-      }), " ", studant.acf.studant_email]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("strong", {
-        children: "Phone:"
-      }), " ", studant.acf.studant_phone]
-    }), studant.acf.studant_portrait && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-      src: studant.acf.studant_portrait,
-      alt: "studant Portrait",
-      className: "studant-portrait"
+  const sortedStudents = filteredStudents.sort((a, b) => {
+    if (sortOption === 'role') {
+      return a.acf.student_role.localeCompare(b.acf.student_role);
+    } else if (sortOption === 'title') {
+      return a.acf.student.title.localeCompare(b.acf.student.title);
+    }
+    return 0;
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    className: "app",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
+      children: "Integrated Students"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Search__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      searchTerm: searchTerm,
+      setSearchTerm: setSearchTerm
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Filter__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      filter: filter,
+      setFilter: setFilter
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Sort__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      setSortOption: setSortOption
+    }), loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      className: "skeleton-loader",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "skeleton-input"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "student-list",
+        children: [...Array(6)].map((_, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          className: "skeleton-card"
+        }, index))
+      })]
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_StudentList__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      students: sortedStudents
     })]
   });
 }
 
 /***/ }),
 
-/***/ "./src/blocks/react-app/react-stuff/StudantImage.js":
-/*!**********************************************************!*\
-  !*** ./src/blocks/react-app/react-stuff/StudantImage.js ***!
-  \**********************************************************/
+/***/ "./src/blocks/react-app/react-stuff/Search.js":
+/*!****************************************************!*\
+  !*** ./src/blocks/react-app/react-stuff/Search.js ***!
+  \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ StudantImage)
+/* harmony export */   "default": () => (/* binding */ Search)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -139,15 +192,138 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
 
 
-function StudantImage({
-  studant
+function Search({
+  searchTerm,
+  setSearchTerm
 }) {
-  const imageUrl = studant.acf.studant_portrait;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: "search-container",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+      className: "search-input",
+      type: "text",
+      placeholder: "Search...",
+      value: searchTerm,
+      onChange: e => setSearchTerm(e.target.value)
+    })
+  });
+}
+
+/***/ }),
+
+/***/ "./src/blocks/react-app/react-stuff/Sort.js":
+/*!**************************************************!*\
+  !*** ./src/blocks/react-app/react-stuff/Sort.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Sort)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function Sort({
+  setSortOption
+}) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: "sort-container",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+      className: "sort-select",
+      onChange: e => setSortOption(e.target.value),
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+        value: "",
+        children: "Sort By"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+        value: "name",
+        children: "Name"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+        value: "role",
+        children: "Role"
+      })]
+    })
+  });
+}
+
+/***/ }),
+
+/***/ "./src/blocks/react-app/react-stuff/StudentCard.js":
+/*!*********************************************************!*\
+  !*** ./src/blocks/react-app/react-stuff/StudentCard.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ StudentCard)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _StudentImage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./StudentImage */ "./src/blocks/react-app/react-stuff/StudentImage.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+function StudentCard({
+  student
+}) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "student-card",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_StudentImage__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      student: student
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
+      children: student.title.rendered
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("strong", {
+        children: "Role:"
+      }), " ", student.acf.student_role]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("strong", {
+        children: "Email:"
+      }), " ", student.acf.student_email]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("strong", {
+        children: "Phone:"
+      }), " ", student.acf.student_phone]
+    }), student.acf.student_portrait && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+      src: student.acf.student_portrait,
+      alt: "student Portrait",
+      className: "student-portrait"
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ "./src/blocks/react-app/react-stuff/StudentImage.js":
+/*!**********************************************************!*\
+  !*** ./src/blocks/react-app/react-stuff/StudentImage.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ studentImage)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function studentImage({
+  student
+}) {
+  const imageUrl = student.acf.student_portrait;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     children: imageUrl ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
       src: imageUrl,
-      alt: "studant Portrait",
-      className: "studant-portrait"
+      alt: "student Portrait",
+      className: "student-portrait"
     }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "no-image",
       children: "No Image Available"
@@ -157,32 +333,34 @@ function StudantImage({
 
 /***/ }),
 
-/***/ "./src/blocks/react-app/react-stuff/StudantList.js":
+/***/ "./src/blocks/react-app/react-stuff/StudentList.js":
 /*!*********************************************************!*\
-  !*** ./src/blocks/react-app/react-stuff/StudantList.js ***!
+  !*** ./src/blocks/react-app/react-stuff/StudentList.js ***!
   \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ StudantList)
+/* harmony export */   "default": () => (/* binding */ StudentList)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _StudantCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./StudantCard */ "./src/blocks/react-app/react-stuff/StudantCard.js");
+/* harmony import */ var _StudentCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./StudentCard */ "./src/blocks/react-app/react-stuff/StudentCard.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
-function StudantList({
+function StudentList({
   students
 }) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    className: "studant-list",
-    children: studants.map(student => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_StudantCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      studant: studant
-    }, student.id))
+    className: "student-list",
+    children: students.length > 0 ? students.map(student => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_StudentCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      student: student
+    }, student.id)) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+      children: "No students found"
+    })
   });
 }
 
